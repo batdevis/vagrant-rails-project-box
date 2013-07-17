@@ -2,10 +2,10 @@
 # vi: set ft=ruby :
  
 Vagrant::Config.run do |config|
-  config.vm.box = "precise32"
-  config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+  config.vm.box = "fandom"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   
-  config.vm.forward_port 3000, 3000
+  config.vm.forward_port 4040, 4040
   config.vm.forward_port 3306, 3306
   
   config.vm.share_folder "app", "/home/vagrant/app", "app/", :create => true
@@ -19,10 +19,11 @@ Vagrant::Config.run do |config|
     chef.add_recipe "git"
     chef.add_recipe "postgresql"
     chef.add_recipe "mysql::server"
+    chef.add_recipe "imagemagick::rmagick"
 
     chef.json.merge!({
       :rvm => {
-        :default_ruby => 'ruby-2.0.0'
+        :default_ruby => 'ruby-1.9.3'
       },
       :mysql => {
         "server_root_password" => "root",

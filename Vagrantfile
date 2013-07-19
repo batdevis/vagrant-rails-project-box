@@ -16,10 +16,13 @@ Vagrant::Config.run do |config|
     chef.add_recipe "apt"
     chef.add_recipe "build-essential"
     chef.add_recipe "vim"
-    chef.add_recipe "rvm::vagrant"
-    chef.add_recipe "rvm::user"
+    chef.add_recipe "ruby_build"
+    chef.add_recipe "rbenv::user"
+    chef.add_recipe "rbenv::vagrant"
+#    chef.add_recipe "rvm::vagrant"
+#    chef.add_recipe "rvm::user"
     chef.add_recipe "git"
-    chef.add_recipe "postgresql"
+#    chef.add_recipe "postgresql"
     chef.add_recipe "mysql::server"
     chef.add_recipe "nodejs::install_from_source"
     chef.add_recipe "imagemagick::rmagick"
@@ -28,13 +31,35 @@ Vagrant::Config.run do |config|
       :vim => {
         "extra_packages" => "vim.rails"
       },
-      :rvm => {
-        "rubies" => [
-          "ruby-2.0.0-p0",
-          "ruby-1.9.3"
-        ],
-        "default_ruby" => 'ruby-1.9.3',
-        "user_installs" => ["vagrant"]
+#      :rvm => {
+#        "version" => "1.18.5",
+#        "user_installs" => [
+#	  {
+#	    "user" => "vagrant",
+#            "rubies" => [
+#	      "ruby-2.0.0-p0"
+#            ],
+#	  }
+#        ]
+#      },
+      :rbenv => {
+        'user_installs' => [
+          { 
+            'user'    => 'vagrant',
+            'rubies'  => ['1.9.3-p0'],
+            'global'  => '1.9.3-p0',
+            'gems'    => {
+              '1.9.3-p0'    => [
+                { 
+		  'name'    => 'bundler'
+                },
+                { 
+		  'name'    => 'rake' 
+		}
+              ],
+            }
+          }
+	]
       },
       :mysql => {
         "server_root_password" => "root",

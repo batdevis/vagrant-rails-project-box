@@ -8,8 +8,15 @@ cookbook 'build-essential'
 
 cookbook 'vim'
 
-cookbook 'rvm', 
- :git => 'git://github.com/fnichol/chef-rvm.git'
+#cookbook 'rvm',
+#  :git => 'git://github.com/fnichol/chef-rvm.git'#, :ref => '24ecbb0'
+
+cookbook 'ruby_build',
+  :git => 'git://github.com/fnichol/chef-ruby_build.git'
+
+cookbook 'rbenv',
+  :git => 'git://github.com/fnichol/chef-rbenv.git', 
+  :ref => 'v0.7.2'
 
 cookbook 'git', 
   :git => 'https://github.com/fnichol/chef-git.git'

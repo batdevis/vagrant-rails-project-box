@@ -1,3 +1,5 @@
+Forked from https://github.com/jpettersson/vagrant-rails-project-box
+
 Having fun installing all that software needed to start a new rails project? No? Then use this VM instead. Until I have finished the documentation read this to find out why this is a great thing: 
 
 http://blog.base2.io/2012/05/01/vagrants-and-chefs-and-librarians-oh-my/#.UQmCJEq6BYh
@@ -7,17 +9,23 @@ http://blog.base2.io/2012/05/01/vagrants-and-chefs-and-librarians-oh-my/#.UQmCJE
 ## 1. Install VirtualBox
 https://www.virtualbox.org/
 
-## 2. Install vagrant and librarian
+## 2. Clone repo
+``
+  $ git clone https://github.com/batdevis/vagrant-rails-project-box.git
+  $ cd vagrant-rails-project-box/
+``
+
+## 3. Install vagrant and librarian
 ``
   $ bundle
 ``
 
-## 3. Install chef cookbooks
+## 4. Install chef cookbooks
 ``
   $ librarian-chef install
 ``
 
-## 4. Build the VM
+## 5. Build the VM
 ``
   $ vagrant up
 ``
@@ -43,3 +51,4 @@ Resume work at anytime:
 ``
   $ vagrant up
 ``
+

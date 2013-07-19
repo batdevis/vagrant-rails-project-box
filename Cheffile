@@ -6,6 +6,8 @@ site 'http://community.opscode.com/api/v1'
 cookbook 'apt'
 cookbook 'build-essential'
 
+cookbook 'vim'
+
 cookbook 'rvm', 
  :git => 'git://github.com/fnichol/chef-rvm.git'
 
@@ -17,3 +19,7 @@ cookbook 'postgresql',
   :ref => 'postgresql-improvements'
 
 cookbook 'mysql'
+
+cookbook 'imagemagick'
+
+cookbook 'nodejs'

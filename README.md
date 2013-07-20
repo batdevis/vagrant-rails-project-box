@@ -12,6 +12,7 @@ https://www.virtualbox.org/
 ## 2. Clone repo
 ``
   $ git clone https://github.com/batdevis/vagrant-rails-project-box.git
+
   $ cd vagrant-rails-project-box/
 ``
 

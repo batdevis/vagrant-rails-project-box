@@ -22,8 +22,7 @@ cookbook 'git',
   :git => 'https://github.com/fnichol/chef-git.git'
 
 cookbook 'postgresql',
-  :git => 'https://github.com/findsyou/cookbooks',
-  :ref => 'postgresql-improvements'
+  :git => 'https://github.com/opscode-cookbooks/postgresql.git'
 
 cookbook 'mysql'
 

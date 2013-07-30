@@ -3,8 +3,8 @@
  
 Vagrant::Config.run do |config|
   config.vm.box = "railsbox"
-  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  #config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
   
   config.vm.forward_port 4040, 4040
   config.vm.forward_port 3306, 3306

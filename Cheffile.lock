@@ -30,6 +30,14 @@ GIT
     ruby_build (0.8.1)
 
 GIT
+  remote: https://github.com/batdevis/chef-git-flow.git
+  ref: master
+  sha: 10e474534a10ecac439accfe39189048474480cb
+  specs:
+    git-flow (0.1.0)
+      runit (>= 0.0.0)
+
+GIT
   remote: https://github.com/fnichol/chef-git.git
   ref: master
   sha: 6c19cbefcdad5ec0f62a64dae1f656d660698ea3
@@ -51,6 +59,7 @@ DEPENDENCIES
   apt (>= 0)
   build-essential (>= 0)
   git (>= 0)
+  git-flow (>= 0)
   imagemagick (>= 0)
   mysql (>= 0)
   nodejs (>= 0)

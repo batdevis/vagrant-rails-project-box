@@ -21,6 +21,9 @@ cookbook 'rbenv',
 cookbook 'git', 
   :git => 'https://github.com/fnichol/chef-git.git'
 
+cookbook 'git-flow',
+  :git => 'https://github.com/batdevis/chef-git-flow.git'
+
 cookbook 'postgresql',
   :git => 'https://github.com/opscode-cookbooks/postgresql.git'
 

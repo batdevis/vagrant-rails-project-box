@@ -3,11 +3,16 @@
  
 Vagrant::Config.run do |config|
   config.vm.box = "railsbox"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  #config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
+  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
   
+  #web applications
   config.vm.forward_port 4040, 4040
+  config.vm.forward_port 4041, 4041
+  config.vm.forward_port 3050, 3050
+  #mysql
   config.vm.forward_port 3306, 3306
+  #postgresql
   config.vm.forward_port 5432, 5432
   
   config.vm.share_folder "app", "/home/vagrant/app", "app/", :create => true
@@ -21,6 +26,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "rbenv::user"
     chef.add_recipe "rbenv::vagrant"
     chef.add_recipe "git"
+    chef.add_recipe "git-flow"
     chef.add_recipe "postgresql::server"
 #    chef.add_recipe "postgresql::apt_pgdg_postgresql"
     chef.add_recipe "mysql::server"
@@ -38,17 +44,17 @@ Vagrant::Config.run do |config|
             'rubies'  => ['1.9.3-p0'],
             'global'  => '1.9.3-p0',
             'gems'    => {
-              '1.9.3-p0'    => [
-                { 
-		  'name'    => 'bundler'
-                },
-                { 
-		  'name'    => 'rake' 
-		}
+              '1.9.3-p0' => [
+                { 'name'    => 'bundler' },
+                { 'name'    => 'rake' }
               ],
-            }
+#              '1.9.3-p448' => [
+#                { 'name'    => 'bundler' },
+#                { 'name'    => 'rake' }
+#              ]
+             }
           }
-	]
+        ]
       },
       :mysql => {
         "server_root_password" => "root",
@@ -60,17 +66,11 @@ Vagrant::Config.run do |config|
         }
       },
       :postgresql => {
-        :version => "9.1",
-	:port => 5432,
-	:password => {
-	  :postgres => "secret"
-	},
-#	:dir => "/var/lib/postgresql/9.1/main",
-#	:enable_pgdg_apt => true,
-#	:server => {
-#	  :packages => "postgresql-9.1"
-#	},
-	:run_list => ["recipe[postgresql::server]"]
+        :version => '9.1',
+        :password => {
+          :postgres => "secret"
+        },
+        :run_list => ["recipe[postgresql::server]"],
       }
       
     })

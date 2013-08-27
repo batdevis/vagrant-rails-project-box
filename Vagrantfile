@@ -3,12 +3,13 @@
  
 Vagrant::Config.run do |config|
   config.vm.box = "railsbox"
-  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
+  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  #config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
   
   #web applications
   config.vm.forward_port 4040, 4040
   config.vm.forward_port 4041, 4041
+  config.vm.forward_port 4042, 4042
   config.vm.forward_port 3050, 3050
   #mysql
   config.vm.forward_port 3306, 3306
@@ -41,17 +42,17 @@ Vagrant::Config.run do |config|
         'user_installs' => [
           { 
             'user'    => 'vagrant',
-            'rubies'  => ['1.9.3-p0'],
+            'rubies'  => ['1.9.3-p0', '1.9.3-p286'],
             'global'  => '1.9.3-p0',
             'gems'    => {
               '1.9.3-p0' => [
                 { 'name'    => 'bundler' },
                 { 'name'    => 'rake' }
               ],
-#              '1.9.3-p448' => [
-#                { 'name'    => 'bundler' },
-#                { 'name'    => 'rake' }
-#              ]
+              '1.9.3-p286' => [
+                { 'name'    => 'bundler' },
+                { 'name'    => 'rake' }
+              ]
              }
           }
         ]

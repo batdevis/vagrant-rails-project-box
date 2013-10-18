@@ -3,20 +3,21 @@
  
 Vagrant::Config.run do |config|
   config.vm.box = "railsbox"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
-  #config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
+  #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
   
   #web applications
-  config.vm.forward_port 4040, 4040
-  config.vm.forward_port 4041, 4041
-  config.vm.forward_port 4042, 4042
   config.vm.forward_port 3050, 3050
+  config.vm.forward_port 3051, 3051
+  config.vm.forward_port 9292, 9292
   #mysql
-  config.vm.forward_port 3306, 3306
+#  config.vm.forward_port 3306, 3306
   #postgresql
-  config.vm.forward_port 5432, 5432
+#  config.vm.forward_port 5432, 5432
   
   config.vm.share_folder "app", "/home/vagrant/app", "app/", :create => true
+
+  config.ssh.forward_agent = true
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks"]
@@ -42,7 +43,7 @@ Vagrant::Config.run do |config|
         'user_installs' => [
           { 
             'user'    => 'vagrant',
-            'rubies'  => ['1.9.3-p0', '1.9.3-p286'],
+            'rubies'  => ['1.9.3-p0', '1.9.3-p286', '1.9.3-p448'],
             'global'  => '1.9.3-p0',
             'gems'    => {
               '1.9.3-p0' => [
@@ -50,6 +51,10 @@ Vagrant::Config.run do |config|
                 { 'name'    => 'rake' }
               ],
               '1.9.3-p286' => [
+                { 'name'    => 'bundler' },
+                { 'name'    => 'rake' }
+              ],
+              '1.9.3-p448' => [
                 { 'name'    => 'bundler' },
                 { 'name'    => 'rake' }
               ]
@@ -69,7 +74,8 @@ Vagrant::Config.run do |config|
       :postgresql => {
         :version => '9.1',
         :password => {
-          :postgres => "secret"
+          :postgres => "secret",
+          :root => "root"
         },
         :run_list => ["recipe[postgresql::server]"],
       }

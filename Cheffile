@@ -32,3 +32,4 @@ cookbook 'mysql'
 cookbook 'imagemagick'
 
 cookbook 'nodejs'
+cookbook 'zip'

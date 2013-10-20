@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "~/Downloads/install/vagrant/precise64.box"
   
   #web applications
+  config.vm.forward_port 3029, 3029
   config.vm.forward_port 3050, 3050
   config.vm.forward_port 3051, 3051
   config.vm.forward_port 9292, 9292
@@ -18,6 +19,10 @@ Vagrant::Config.run do |config|
   config.vm.share_folder "app", "/home/vagrant/app", "app/", :create => true
 
   config.ssh.forward_agent = true
+
+  #https://github.com/gruntjs/grunt/issues/701
+  #npm symilklinks
+  config.vm.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/vagrant", "1"]
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path = ["cookbooks"]
@@ -34,6 +39,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "mysql::server"
     chef.add_recipe "nodejs::install_from_source"
     chef.add_recipe "imagemagick::rmagick"
+    chef.add_recipe "zip"
 
     chef.json.merge!({
       :vim => {
@@ -79,6 +85,10 @@ Vagrant::Config.run do |config|
         },
         :run_list => ["recipe[postgresql::server]"],
       }
+#      ,
+#      :nodejs => {
+#        :dir => "$HOME/nodejs"
+#      }
       
     })
 

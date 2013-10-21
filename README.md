@@ -1,3 +1,5 @@
+## checkout the new project: https://github.com/batdevis/devbox, this is no longer maintained
+
 Forked from https://github.com/jpettersson/vagrant-rails-project-box
 
 Having fun installing all that software needed to start a new rails project? No? Then use this VM instead. Until I have finished the documentation read this to find out why this is a great thing: 
